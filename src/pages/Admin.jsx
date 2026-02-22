@@ -77,17 +77,27 @@ function Admin() {
     return a.bookingDateTime - b.bookingDateTime;
   });
 
+  // 👇 YAHAN CHANGES KIYE GAYE HAIN (Center align karne ke liye) 👇
   if (!isAuthenticated) {
     return (
-      <div className="form-container-card" style={{ maxWidth: '400px', marginTop: '100px' }}>
-        <h2 className="text-center mb-4">Admin Access</h2>
-        <form onSubmit={handleLogin}>
-          <div className="form-group">
-            <label className="form-label">Password</label>
-            <input type="password" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} required className="form-input"/>
-          </div>
-          <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#333' }}>Login</button>
-        </form>
+      <div className="admin-login-wrapper">
+        <div className="form-container-card admin-login-card">
+          <h2 className="text-center mb-4">Admin Access</h2>
+          <form onSubmit={handleLogin}>
+            <div className="form-group">
+              <label className="form-label">Password</label>
+              <input 
+                type="password" 
+                placeholder="Enter password" 
+                value={password} 
+                onChange={(e) => setPassword(e.target.value)} 
+                required 
+                className="form-input"
+              />
+            </div>
+            <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#333' }}>Login</button>
+          </form>
+        </div>
       </div>
     );
   }

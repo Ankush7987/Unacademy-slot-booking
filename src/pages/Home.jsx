@@ -14,7 +14,6 @@ function Home() {
 
   const categories = ["ST", "SC", "OBC", "General EWS", "General"];
   
-  // Yahan naye time slots update kiye gaye hain (Shaam 8 PM tak)
   const TIME_SLOTS = [
     "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
     "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM",
@@ -36,18 +35,14 @@ function Home() {
 
   const isTimePassed = (timeStr, selectedDate) => {
     if (selectedDate !== todayDate) return false;
-
     const [time, modifier] = timeStr.split(' ');
     let [hours, minutes] = time.split(':');
     hours = parseInt(hours, 10);
     minutes = parseInt(minutes, 10);
-
     if (hours === 12 && modifier === 'AM') hours = 0;
     if (hours !== 12 && modifier === 'PM') hours += 12;
-
     const currentHour = today.getHours();
     const currentMinute = today.getMinutes();
-
     if (hours < currentHour) return true;
     if (hours === currentHour && minutes <= currentMinute) return true;
     return false;
@@ -55,21 +50,17 @@ function Home() {
 
   useEffect(() => {
     if (!formData.date) return;
-
     const fetchBookedSlots = async () => {
       setFetchingSlots(true);
       try {
         const q = query(collection(db, "bookings"), where("date", "==", formData.date));
         const snapshot = await getDocs(q);
-        
         const counts = {};
         snapshot.forEach(doc => {
           const time = doc.data().time;
           counts[time] = (counts[time] || 0) + 1;
         });
-        
         setDateBookings(counts);
-        
         if (counts[formData.time] >= MAX_SLOTS_PER_TIME || isTimePassed(formData.time, formData.date)) {
           setFormData(prev => ({ ...prev, time: '' }));
         }
@@ -78,7 +69,6 @@ function Home() {
       }
       setFetchingSlots(false);
     };
-
     fetchBookedSlots();
   }, [formData.date]);
 
@@ -92,12 +82,9 @@ function Home() {
       alert("Kripya ek valid Time Slot select karein.");
       return;
     }
-
     setLoading(true);
-
     try {
       const bookingsRef = collection(db, "bookings");
-
       const qMobile = query(bookingsRef, where("mobileNumber", "==", formData.mobileNumber));
       const mobileSnapshot = await getDocs(qMobile);
       if (!mobileSnapshot.empty) {
@@ -105,7 +92,6 @@ function Home() {
         setLoading(false);
         return;
       }
-
       const qTime = query(bookingsRef, where("date", "==", formData.date), where("time", "==", formData.time));
       const timeSnapshot = await getDocs(qTime);
       if (timeSnapshot.size >= MAX_SLOTS_PER_TIME) {
@@ -115,16 +101,13 @@ function Home() {
         setLoading(false);
         return;
       }
-
       const generatedTokenId = String(Math.floor(Math.random() * 100000)).padStart(5, '0');
-
       await addDoc(bookingsRef, {
         ...formData,
         tokenId: generatedTokenId,
         status: 'Pending',
         createdAt: serverTimestamp()
       });
-      
       setToken(generatedTokenId);
       setFormData({ fullName: '', mobileNumber: '', category: '', date: '', time: '' });
     } catch (error) {
@@ -150,17 +133,17 @@ function Home() {
   }
 
   return (
-    <div className="container" style={{ maxWidth: '800px' }}>
-      
+    <div className="container">
       <div className="warning-banner">
         <strong>🚨 Server Warning: Apply Immediately!</strong><br/>
         NEET servers are slowing down. <strong>Last Date is 8th March.</strong><br/>
         Please fill your form as soon as possible.
       </div>
 
-      <div style={{ display: 'flex', gap: '30px', flexWrap: 'wrap' }}>
+      <div className="home-layout">
         
-        <div className="form-container-card" style={{ flex: '1', minWidth: '320px', margin: '0' }}>
+        {/* Left Side: Form */}
+        <div className="home-form-side form-container-card">
           <h2 className="text-center mb-4">Book Your Slot</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -225,8 +208,8 @@ function Home() {
           </form>
         </div>
 
-        <div style={{ flex: '1', minWidth: '300px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          
+        {/* Right Side: Information Panel */}
+        <div className="home-info-side">
           <div className="info-card">
             <h3 style={{ color: '#08bd80', marginBottom: '15px' }}>📄 Documents Required</h3>
             <ul className="docs-list">
@@ -249,8 +232,8 @@ function Home() {
             </div>
             <p style={{ marginTop: '15px', fontWeight: 'bold', fontSize: '18px' }}>+91 91318 50359</p>
           </div>
-
         </div>
+
       </div>
     </div>
   );

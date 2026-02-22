@@ -1,8 +1,11 @@
 /* src/App.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+/* ========================================= */
+/* VARIABLES & BASE STYLES */
+/* ========================================= */
 :root {
-  --primary-color: #08bd80; /* Unacademy Green */
+  --primary-color: #08bd80;
   --primary-hover: #06a06d;
   --bg-light: #f0f4f7;
   --text-dark: #333333;
@@ -20,43 +23,106 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Layout Containers */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.form-container-card {
-  background: var(--white);
-  padding: 40px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  max-width: 480px;
-  margin: 40px auto;
-}
-
-/* Typography */
-h1, h2, h3 {
-  margin-top: 0;
-  color: var(--text-dark);
-}
-
+h1, h2, h3 { margin-top: 0; color: var(--text-dark); }
 .text-center { text-align: center; }
 .text-primary { color: var(--primary-color); }
 .mb-4 { margin-bottom: 1.5rem; }
 
-/* Forms & Inputs */
-.form-group {
-  margin-bottom: 20px;
+/* ========================================= */
+/* LAYOUT & NAVBAR */
+/* ========================================= */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 20px;
 }
 
-.form-label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-  color: var(--text-dark);
+.navbar {
+  background-color: var(--white);
+  padding: 15px 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.nav-logo {
+  margin: 0;
+  color: var(--primary-color);
+  font-weight: 800;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.nav-link {
+  color: #555;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: color 0.2s;
+}
+
+.home-layout {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+.home-form-side { flex: 1.5; }
+.home-info-side { flex: 1; display: flex; flex-direction: column; gap: 20px; }
+
+/* ========================================= */
+/* CARDS & BANNERS */
+/* ========================================= */
+.form-container-card, .info-card, .success-card {
+  background: var(--white);
+  padding: 35px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.success-card {
+  text-align: center;
+  max-width: 450px;
+  margin: 50px auto;
+  border-top: 5px solid var(--primary-color);
+}
+
+.warning-banner {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 15px 20px;
+  border-left: 5px solid #ffc107;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  font-size: 15px;
+  line-height: 1.5;
+  box-shadow: var(--shadow);
+}
+
+.info-card { padding: 30px; }
+.docs-list { padding-left: 20px; margin: 0; font-size: 15px; line-height: 1.8; }
+.docs-list li { margin-bottom: 8px; }
+
+.contact-card { border-top: 4px solid #25D366; text-align: center; }
+.token-box { background: var(--bg-light); padding: 15px; border-radius: 8px; margin: 20px 0; }
+.token-id { font-size: 36px; color: var(--primary-color); letter-spacing: 2px; margin: 0; }
+
+/* ========================================= */
+/* FORMS & BUTTONS */
+/* ========================================= */
+.form-group { margin-bottom: 20px; }
+.form-label { display: block; margin-bottom: 8px; font-weight: 500; color: var(--text-dark); }
 
 .form-input {
   width: 100%;
@@ -66,13 +132,9 @@ h1, h2, h3 {
   font-size: 16px;
   font-family: inherit;
   transition: border-color 0.2s;
-  box-sizing: border-box; /* Important for padding */
+  box-sizing: border-box;
 }
-
-.form-input:focus {
-  outline: none;
-  border-color: var(--primary-color);
-}
+.form-input:focus { outline: none; border-color: var(--primary-color); }
 
 .btn {
   width: 100%;
@@ -84,127 +146,29 @@ h1, h2, h3 {
   cursor: pointer;
   transition: background-color 0.2s;
 }
+.btn-primary { background-color: var(--primary-color); color: var(--white); }
+.btn-primary:hover { background-color: var(--primary-hover); }
+.btn-primary:disabled { background-color: #a0e0c8; cursor: not-allowed; }
 
-.btn-primary {
-  background-color: var(--primary-color);
-  color: var(--white);
-}
-
-.btn-primary:hover {
-  background-color: var(--primary-hover);
-}
-
-.btn-primary:disabled {
-  background-color: #a0e0c8;
-  cursor: not-allowed;
-}
-
-/* Success Card */
-.success-card {
-  background: var(--white);
-  padding: 40px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  max-width: 450px;
-  margin: 50px auto;
-  text-align: center;
-  border-top: 5px solid var(--primary-color);
-}
-
-.token-box {
-  background: var(--bg-light);
-  padding: 15px;
-  border-radius: 8px;
-  margin: 20px 0;
-}
-
-.token-id {
-  font-size: 36px;
-  color: var(--primary-color);
-  letter-spacing: 2px;
-  margin: 0;
-}
-
-/* Admin Table Styling */
-.admin-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25px;
-}
-
-.table-container {
-  background: var(--white);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow-x: auto; /* For responsive scrolling on small screens */
-}
-
-.styled-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 600px; /* Ensures table doesn't squash too much */
-}
-
-.styled-table thead tr {
-  background-color: #f8f9fa;
-  text-align: left;
-}
-
-.styled-table th, .styled-table td {
-  padding: 15px 20px;
-}
-
-.styled-table th {
-  font-weight: 600;
-  color: var(--text-light);
-  font-size: 14px;
-  text-transform: uppercase;
-}
-
-.styled-table tbody tr {
-  border-bottom: 1px solid #edf2f7;
-}
-
-.styled-table tbody tr:hover {
-  background-color: #f9fbfc;
-}
-
-.token-cell {
-  font-weight: 700;
-  color: var(--primary-color);
-}
-
-
-/* src/App.css me neeche add karein */
-
-.status-badge {
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-.status-pending { background-color: #fff3cd; color: #856404; }
-.status-success { background-color: #d4edda; color: #155724; }
-.status-expired { background-color: #f8d7da; color: #721c24; }
-
-.action-btn {
-  padding: 6px 10px;
-  border: none;
+.contact-btn {
+  flex: 1;
+  padding: 10px;
   border-radius: 6px;
-  cursor: pointer;
-  font-size: 13px;
+  text-decoration: none;
   font-weight: 600;
+  font-size: 14px;
+  color: white;
+  display: block;
+  text-align: center;
   transition: opacity 0.2s;
 }
-.action-btn:hover { opacity: 0.8; }
-.success-btn { background-color: #08bd80; color: white; }
-.delete-btn { background-color: #e53e3e; color: white; }
+.contact-btn:hover { opacity: 0.85; }
+.call-btn { background-color: #3b82f6; }
+.whatsapp-btn { background-color: #25D366; }
 
-/* src/App.css me sabse neeche add karein */
-
-/* Time Slots Grid Styling */
+/* ========================================= */
+/* TIME SLOTS GRID */
+/* ========================================= */
 .slots-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
@@ -218,116 +182,14 @@ h1, h2, h3 {
   padding: 12px 5px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s ease;
   background: white;
   user-select: none;
+  transition: all 0.2s ease;
 }
+.slot-box:hover:not(.slot-disabled):not(.slot-full) { border-color: var(--primary-color); background: #f0fdf8; }
+.slot-selected { background: var(--primary-color) !important; color: white; border-color: var(--primary-color); }
 
-.slot-box:hover:not(.slot-full) {
-  border-color: var(--primary-color);
-  background: #f0fdf8;
-}
-
-.slot-selected {
-  background: var(--primary-color) !important;
-  color: white;
-  border-color: var(--primary-color);
-}
-
-.slot-full {
-  background: #f8f9fa;
-  color: #adb5bd;
-  cursor: not-allowed;
-  border-color: #eee;
-  opacity: 0.7;
-}
-
-.slot-time {
-  font-weight: 700;
-  font-size: 14px;
-  margin-bottom: 4px;
-}
-
-.slot-left {
-  font-size: 11px;
-  font-weight: 600;
-  color: #666;
-}
-
-.slot-selected .slot-left {
-  color: #e6ffe6;
-}
-
-.slot-full .slot-left {
-  color: #dc3545;
-}
-
-/* src/App.css me sabse neeche add karein */
-
-/* Warning Banner */
-.warning-banner {
-  background-color: #fff3cd;
-  color: #856404;
-  padding: 15px 20px;
-  border-left: 5px solid #ffc107;
-  border-radius: 8px;
-  margin-bottom: 30px;
-  font-size: 15px;
-  line-height: 1.5;
-  box-shadow: var(--shadow);
-}
-
-/* Info Cards (Right Side) */
-.info-card {
-  background: var(--white);
-  padding: 30px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-.docs-list {
-  padding-left: 20px;
-  margin: 0;
-  color: var(--text-dark);
-  font-size: 15px;
-  line-height: 1.8;
-}
-
-.docs-list li {
-  margin-bottom: 8px;
-}
-
-/* Contact Section */
-.contact-card {
-  border-top: 4px solid #25D366; /* WhatsApp color accent */
-  text-align: center;
-}
-
-.contact-btn {
-  flex: 1;
-  padding: 10px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  transition: opacity 0.2s;
-  color: white;
-}
-
-.contact-btn:hover {
-  opacity: 0.85;
-}
-
-.call-btn {
-  background-color: #3b82f6; /* Blue */
-}
-
-.whatsapp-btn {
-  background-color: #25D366; /* WhatsApp Green */
-}
-
-/* Disabled Time Slots Update */
-.slot-disabled {
+.slot-disabled, .slot-full {
   background: #f8f9fa;
   color: #adb5bd;
   cursor: not-allowed;
@@ -335,6 +197,84 @@ h1, h2, h3 {
   opacity: 0.6;
 }
 
-.slot-disabled .slot-left {
-  color: #dc3545; /* Red color for 'Full' or 'Passed' */
+.slot-time { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+.slot-left { font-size: 11px; font-weight: 600; color: #666; }
+.slot-selected .slot-left { color: #e6ffe6; }
+.slot-disabled .slot-left, .slot-full .slot-left { color: #dc3545; }
+
+/* ========================================= */
+/* ADMIN TABLE STYLES */
+/* ========================================= */
+.admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+.table-container { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow-x: auto; }
+.styled-table { width: 100%; border-collapse: collapse; min-width: 800px; }
+.styled-table thead tr { background-color: #f8f9fa; text-align: left; }
+.styled-table th, .styled-table td { padding: 15px 20px; }
+.styled-table th { font-weight: 600; color: var(--text-light); font-size: 14px; text-transform: uppercase; }
+.styled-table tbody tr { border-bottom: 1px solid #edf2f7; }
+.styled-table tbody tr:hover { background-color: #f9fbfc; }
+.token-cell { font-weight: 700; color: var(--primary-color); }
+
+.status-badge { padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+.status-pending { background-color: #fff3cd; color: #856404; }
+.status-success { background-color: #d4edda; color: #155724; }
+.status-expired { background-color: #f8d7da; color: #721c24; }
+
+.action-btn { padding: 6px 10px; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; transition: opacity 0.2s; }
+.action-btn:hover { opacity: 0.8; }
+.success-btn { background-color: #08bd80; color: white; }
+.delete-btn { background-color: #e53e3e; color: white; }
+
+/* ========================================= */
+/* RESPONSIVE DESIGN (MEDIA QUERIES) */
+/* ========================================= */
+
+/* TABLET (Max Width: 992px) */
+@media (max-width: 992px) {
+  .home-layout { flex-direction: column; }
+  .home-form-side, .home-info-side { width: 100%; }
+  .container { padding: 20px; }
 }
+
+/* MOBILE (Max Width: 768px) */
+@media (max-width: 768px) {
+  .nav-container { flex-direction: column; gap: 10px; }
+  .form-container-card, .info-card, .success-card { padding: 20px; margin: 15px 0; }
+  h2 { font-size: 22px; }
+  .form-input { padding: 10px 12px; font-size: 15px; }
+  
+  .slots-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 8px; }
+  .slot-box { padding: 10px 4px; }
+  .slot-time { font-size: 12px; }
+  .slot-left { font-size: 10px; }
+  
+  .admin-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+  .styled-table th, .styled-table td { padding: 10px; font-size: 13px; }
+  .contact-btn { padding: 12px; font-size: 14px; }
+}
+
+/* SMALL MOBILE (Max Width: 480px) */
+@media (max-width: 480px) {
+  .container { padding: 10px; }
+  .nav-logo { font-size: 20px; }
+  .warning-banner { padding: 12px; font-size: 13px; margin-bottom: 20px; }
+  .token-id { font-size: 28px; }
+  .slots-grid { grid-template-columns: repeat(3, 1fr); }
+  .contact-btn { font-size: 12px; padding: 8px; }
+}
+
+/* Admin Login Center Wrapper (Foolproof Center) */
+.admin-login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 120px); /* Navbar aur padding ko minus karke bachi hui puri screen lega */
+  width: 100%;
+}
+
+.admin-login-card {
+  max-width: 400px !important;
+  width: 100% !important;
+  margin: 0 auto !important; /* Force center aur default margin ko hatane ke liye */
+}
+
