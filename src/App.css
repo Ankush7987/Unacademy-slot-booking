@@ -1,0 +1,340 @@
+/* src/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #08bd80; /* Unacademy Green */
+  --primary-hover: #06a06d;
+  --bg-light: #f0f4f7;
+  --text-dark: #333333;
+  --text-light: #666666;
+  --white: #ffffff;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --radius: 12px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Layout Containers */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.form-container-card {
+  background: var(--white);
+  padding: 40px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 480px;
+  margin: 40px auto;
+}
+
+/* Typography */
+h1, h2, h3 {
+  margin-top: 0;
+  color: var(--text-dark);
+}
+
+.text-center { text-align: center; }
+.text-primary { color: var(--primary-color); }
+.mb-4 { margin-bottom: 1.5rem; }
+
+/* Forms & Inputs */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e1e5e8;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  box-sizing: border-box; /* Important for padding */
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-primary:disabled {
+  background-color: #a0e0c8;
+  cursor: not-allowed;
+}
+
+/* Success Card */
+.success-card {
+  background: var(--white);
+  padding: 40px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 450px;
+  margin: 50px auto;
+  text-align: center;
+  border-top: 5px solid var(--primary-color);
+}
+
+.token-box {
+  background: var(--bg-light);
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.token-id {
+  font-size: 36px;
+  color: var(--primary-color);
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+/* Admin Table Styling */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.table-container {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow-x: auto; /* For responsive scrolling on small screens */
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* Ensures table doesn't squash too much */
+}
+
+.styled-table thead tr {
+  background-color: #f8f9fa;
+  text-align: left;
+}
+
+.styled-table th, .styled-table td {
+  padding: 15px 20px;
+}
+
+.styled-table th {
+  font-weight: 600;
+  color: var(--text-light);
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #edf2f7;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #f9fbfc;
+}
+
+.token-cell {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+
+/* src/App.css me neeche add karein */
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.status-pending { background-color: #fff3cd; color: #856404; }
+.status-success { background-color: #d4edda; color: #155724; }
+.status-expired { background-color: #f8d7da; color: #721c24; }
+
+.action-btn {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+.action-btn:hover { opacity: 0.8; }
+.success-btn { background-color: #08bd80; color: white; }
+.delete-btn { background-color: #e53e3e; color: white; }
+
+/* src/App.css me sabse neeche add karein */
+
+/* Time Slots Grid Styling */
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.slot-box {
+  border: 2px solid #e1e5e8;
+  border-radius: 8px;
+  padding: 12px 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: white;
+  user-select: none;
+}
+
+.slot-box:hover:not(.slot-full) {
+  border-color: var(--primary-color);
+  background: #f0fdf8;
+}
+
+.slot-selected {
+  background: var(--primary-color) !important;
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.slot-full {
+  background: #f8f9fa;
+  color: #adb5bd;
+  cursor: not-allowed;
+  border-color: #eee;
+  opacity: 0.7;
+}
+
+.slot-time {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.slot-left {
+  font-size: 11px;
+  font-weight: 600;
+  color: #666;
+}
+
+.slot-selected .slot-left {
+  color: #e6ffe6;
+}
+
+.slot-full .slot-left {
+  color: #dc3545;
+}
+
+/* src/App.css me sabse neeche add karein */
+
+/* Warning Banner */
+.warning-banner {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 15px 20px;
+  border-left: 5px solid #ffc107;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  font-size: 15px;
+  line-height: 1.5;
+  box-shadow: var(--shadow);
+}
+
+/* Info Cards (Right Side) */
+.info-card {
+  background: var(--white);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.docs-list {
+  padding-left: 20px;
+  margin: 0;
+  color: var(--text-dark);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.docs-list li {
+  margin-bottom: 8px;
+}
+
+/* Contact Section */
+.contact-card {
+  border-top: 4px solid #25D366; /* WhatsApp color accent */
+  text-align: center;
+}
+
+.contact-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: opacity 0.2s;
+  color: white;
+}
+
+.contact-btn:hover {
+  opacity: 0.85;
+}
+
+.call-btn {
+  background-color: #3b82f6; /* Blue */
+}
+
+.whatsapp-btn {
+  background-color: #25D366; /* WhatsApp Green */
+}
+
+/* Disabled Time Slots Update */
+.slot-disabled {
+  background: #f8f9fa;
+  color: #adb5bd;
+  cursor: not-allowed;
+  border-color: #eee;
+  opacity: 0.6;
+}
+
+.slot-disabled .slot-left {
+  color: #dc3545; /* Red color for 'Full' or 'Passed' */
+}
