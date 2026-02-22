@@ -14,26 +14,26 @@ function Home() {
 
   const categories = ["ST", "SC", "OBC", "General EWS", "General"];
   
+  // Yahan naye time slots update kiye gaye hain (Shaam 8 PM tak)
   const TIME_SLOTS = [
     "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
     "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM",
     "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM",
-    "04:00 PM", "04:30 PM", "05:00 PM"
+    "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM",
+    "06:00 PM", "06:30 PM", "07:00 PM", "07:30 PM",
+    "08:00 PM"
   ];
   
   const MAX_SLOTS_PER_TIME = 3; 
 
-  // Aaj ki date format karna (YYYY-MM-DD)
   const today = new Date();
   const year = today.getFullYear();
   const month = String(today.getMonth() + 1).padStart(2, '0');
   const day = String(today.getDate()).padStart(2, '0');
   const todayDate = `${year}-${month}-${day}`;
   
-  // Last date limit set karna
   const maxDate = "2026-03-08"; 
 
-  // Check karna ki time nikal toh nahi gaya (Aaj ke din ke liye)
   const isTimePassed = (timeStr, selectedDate) => {
     if (selectedDate !== todayDate) return false;
 
@@ -70,7 +70,6 @@ function Home() {
         
         setDateBookings(counts);
         
-        // Agar select kiya hua time ab full ho chuka hai ya time nikal chuka hai, use clear karein
         if (counts[formData.time] >= MAX_SLOTS_PER_TIME || isTimePassed(formData.time, formData.date)) {
           setFormData(prev => ({ ...prev, time: '' }));
         }
@@ -153,7 +152,6 @@ function Home() {
   return (
     <div className="container" style={{ maxWidth: '800px' }}>
       
-      {/* Warning Banner */}
       <div className="warning-banner">
         <strong>🚨 Server Warning: Apply Immediately!</strong><br/>
         NEET servers are slowing down. <strong>Last Date is 8th March.</strong><br/>
@@ -162,7 +160,6 @@ function Home() {
 
       <div style={{ display: 'flex', gap: '30px', flexWrap: 'wrap' }}>
         
-        {/* Left Side: Form */}
         <div className="form-container-card" style={{ flex: '1', minWidth: '320px', margin: '0' }}>
           <h2 className="text-center mb-4">Book Your Slot</h2>
           <form onSubmit={handleSubmit}>
@@ -186,7 +183,6 @@ function Home() {
 
             <div className="form-group">
               <label className="form-label">Preferred Date</label>
-              {/* min aur max date lagayi gayi hai */}
               <input type="date" name="date" value={formData.date} onChange={handleChange} min={todayDate} max={maxDate} required className="form-input" />
             </div>
 
@@ -200,7 +196,7 @@ function Home() {
                     {TIME_SLOTS.map(time => {
                       const bookedCount = dateBookings[time] || 0;
                       const isFull = bookedCount >= MAX_SLOTS_PER_TIME;
-                      const hasPassed = isTimePassed(time, formData.date); // Naya logic
+                      const hasPassed = isTimePassed(time, formData.date); 
                       const isDisabled = isFull || hasPassed;
                       const isSelected = formData.time === time;
                       const left = MAX_SLOTS_PER_TIME - bookedCount;
@@ -229,7 +225,6 @@ function Home() {
           </form>
         </div>
 
-        {/* Right Side: Information Panel */}
         <div style={{ flex: '1', minWidth: '300px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
           
           <div className="info-card">
